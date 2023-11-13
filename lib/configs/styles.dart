@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final $styles = AppStyle();
 
@@ -11,10 +12,17 @@ class AppStyle {
 
 @immutable
 class AppText {
-  late final headlineLarge = TextStyle(
-    fontSize: 30,
-    fontWeight: FontWeight.w400,
-    fontFamily: "Poppins",
+  late final headline = GoogleFonts.anton(
+    fontSize: 35,
+    color: $styles.colors.black,
+  );
+  late final caption = GoogleFonts.nunito(
+    fontSize: 18,
+    color: $styles.colors.subtitle,
+  );
+
+  late final googleButton = GoogleFonts.nunito(
+    fontSize: 20,
     color: $styles.colors.black,
   );
   late final bodyMedium = TextStyle(
