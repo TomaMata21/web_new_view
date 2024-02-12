@@ -20,6 +20,10 @@ class AppText {
     fontSize: 18,
     color: $styles.colors.subtitle,
   );
+  late final button = GoogleFonts.nunito(
+    fontSize: 16,
+    color: $styles.colors.white,
+  );
 
   late final googleButton = GoogleFonts.nunito(
     fontSize: 20,

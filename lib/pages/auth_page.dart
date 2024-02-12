@@ -1,66 +1,82 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:web_new_view/configs/assets.dart';
 import 'package:web_new_view/configs/styles.dart';
+import 'package:web_new_view/pages/widgets/custom_button.dart';
+import 'package:web_new_view/pages/widgets/custom_password_input.dart';
+import 'package:web_new_view/pages/widgets/custom_social_auth_button.dart';
+import 'package:web_new_view/pages/widgets/custom_tab.dart';
+import 'package:web_new_view/pages/widgets/custom_text_input.dart';
+import 'package:web_new_view/pages/widgets/google_auth_button.dart';
+import 'package:web_new_view/pages/widgets/or_widget.dart';
+import 'package:web_new_view/pages/widgets/privacy_button.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.sizeOf(context).height;
+    final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: $styles.colors.background,
       body: Center(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              Text(
-                "👋Its nice to see you",
-                style: $styles.text.headline,
-              ),
-              Gap(height * 0.02),
-              Text(
-                "Join Our Blogging Community, Where Words Create Words and Friends Await",
-                style: $styles.text.caption,
-              ),
-              Gap(height * 0.03),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: $styles.colors.white,
-                  surfaceTintColor: Colors.white,
-                  foregroundColor: $styles.colors.white,
-                  elevation: 0,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(color: $styles.colors.border, width: 0.4),
-                  ),
+          child: SizedBox(
+            width: width * 0.40,
+            child: Column(
+              children: [
+                Text(
+                  "👋Its nice to see you",
+                  style: $styles.text.headline,
                 ),
-                onPressed: () {},
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                Gap(height * 0.02),
+                Text(
+                  "Join Our Blogging Community, Where Words Create Words and Friends Await",
+                  style: $styles.text.caption,
+                ),
+                Gap(height * 0.03),
+                Wrap(
+                  spacing: width * 0.01,
+                  runSpacing: height * 0.01,
                   children: [
-                    Gap(width * 0.05),
-                    SvgPicture.asset(
-                      Assets.google,
-                      height: 25,
-                      width: 25,
+                    const GoogleAuthButton(),
+                    CustomSocialAuthButton(
+                      asset: Assets.facebook,
+                      onPressed: () {},
                     ),
-                    const Gap(10),
-                    Text(
-                      "Sign in with Google",
-                      style: $styles.text.googleButton,
+                    // Gap(height * 0.01),
+                    CustomSocialAuthButton(
+                      asset: Assets.apple,
+                      onPressed: () {},
                     ),
-                    Gap(width * 0.05),
                   ],
                 ),
-              ),
-            ],
+                Gap(height * 0.03),
+                const OrWidget(),
+                Gap(height * 0.03),
+                const CustomTab(),
+                Gap(height * 0.03),
+                const CustomTextInput(
+                  label: "Name",
+                  hintText: "John Doe",
+                ),
+                const CustomTextInput(
+                  label: "Email",
+                  hintText: "johndoe@email.com",
+                  textInputType: TextInputType.emailAddress,
+                ),
+                const CustomPasswordInput(
+                  label: "Mot de passe",
+                  hintText: "******",
+                ),
+                Gap(height * 0.02),
+                const PrivacyButton(),
+                Gap(height * 0.03),
+                const CustomButton(),
+              ],
+            ),
           ),
         ),
       ),
