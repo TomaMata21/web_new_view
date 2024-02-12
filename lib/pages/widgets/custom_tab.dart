@@ -11,85 +11,66 @@ class CustomTab extends StatefulWidget {
 }
 
 class _CustomTabState extends State<CustomTab> {
-  double end = 0;
+  int _selectedIndex = 0;
 
-  void onSignUp() {
-    if (end != 0) {
-      setState(() {
-     end = 0;
-      });
-    }
-  }
-
-  void onSignIn() {
-    if (end!= 1.63) {
-      setState(() {
-        end = 1.63;
-      });
-    }
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
-    final width = MediaQuery.sizeOf(context).width;
-
     return Container(
       height: 50,
       decoration: BoxDecoration(
         color: $styles.colors.tabBackground,
         borderRadius: BorderRadius.circular(15),
       ),
-      child: Stack(
-        clipBehavior: Clip.none,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Positioned(
-            top: 4,
-            bottom: 4,
-            left: 4,
-            child: Container(
-              width: width * 0.15,
-              height: height * 0.04,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: $styles.colors.button,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ).animate().slideX(
-                  end: end,
-                  curve: Curves.elasticInOut,
-                  delay: const Duration(milliseconds: 2000),
+          Expanded(
+            child: GestureDetector(
+              onTap: () => _onItemTapped(0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: _selectedIndex == 0
+                      ? $styles.colors.button
+                      : $styles.colors.tabBackground,
+                  borderRadius: const BorderRadius.horizontal(
+                    left: Radius.circular(15),
+                  ),
                 ),
+                child: TabButton(
+                  label: "Sign Up",
+                  textColor: _selectedIndex == 0
+                      ? $styles.colors.white
+                      : $styles.colors.button,
+                ),
+              ),
+            ),
           ),
-          // AnimatedPositioned(
-          //   duration: const Duration(milliseconds: 3200),
-          //   curve: Curves.bounceIn,
-          //   top: 4,
-          //   left: left,
-          //   right: right,
-          //   bottom: 4,
-          //   child: Container(
-          //     width: width * 0.15,
-          //     height: height * 0.04,
-          //     alignment: Alignment.center,
-          //     decoration: BoxDecoration(
-          //       color: $styles.colors.button,
-          //       borderRadius: BorderRadius.circular(10),
-          //     ),
-          //   ),
-          // ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TabButton(
-                label: "Sign Up",
-                onTap: onSignUp,
+          Expanded(
+            child: GestureDetector(
+              onTap: () => _onItemTapped(1),
+              child: Container(
+    decoration: BoxDecoration(
+    color: _selectedIndex == 1
+    ? $styles.colors.button
+        : $styles.colors.tabBackground,
+    borderRadius: const BorderRadius.horizontal(
+    right: Radius.circular(15),
+    ),
+    ),
+                child: TabButton(
+                  label: "Sign in",
+                  textColor: _selectedIndex == 1
+                      ? $styles.colors.white
+                      : $styles.colors.button,
+                ),
               ),
-              TabButton(
-                label: "Sign in",
-                onTap: onSignIn,
-              ),
-            ],
+            ),
           ),
         ],
       ),
