@@ -14,24 +14,27 @@ class CustomSocialAuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: $styles.colors.white,
-        surfaceTintColor: Colors.white,
-        foregroundColor: $styles.colors.white,
-        elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: BorderSide(color: $styles.colors.border, width: 0.4),
+    final width = MediaQuery.sizeOf(context).width;
+    return SizedBox(
+      height: 50,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: $styles.colors.white,
+          surfaceTintColor: Colors.white,
+          foregroundColor: $styles.colors.white,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(color: $styles.colors.border, width: 0.4),
+          ),
         ),
-      ),
-      onPressed: onPressed,
-      child: SvgPicture.asset(
-        asset,
-        width: 25,
-        height: 25,
+        onPressed: onPressed,
+        child: SvgPicture.asset(
+          asset,
+          width: 25,
+          height: 25,
+        ),
       ),
     );
   }

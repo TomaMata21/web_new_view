@@ -35,7 +35,7 @@ class _CustomTabState extends State<CustomTab> {
     final width = MediaQuery.sizeOf(context).width;
 
     return Container(
-      height: height * 0.05,
+      height: 50,
       decoration: BoxDecoration(
         color: $styles.colors.tabBackground,
         borderRadius: BorderRadius.circular(15),

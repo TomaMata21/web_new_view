@@ -39,14 +39,13 @@ class AuthPage extends StatelessWidget {
                 Gap(height * 0.03),
                 Wrap(
                   spacing: width * 0.01,
-                  runSpacing: height * 0.01,
+                  runSpacing: width * 0.01,
                   children: [
                     const GoogleAuthButton(),
                     CustomSocialAuthButton(
                       asset: Assets.facebook,
                       onPressed: () {},
                     ),
-                    // Gap(height * 0.01),
                     CustomSocialAuthButton(
                       asset: Assets.apple,
                       onPressed: () {},
