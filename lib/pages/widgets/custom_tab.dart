@@ -33,7 +33,8 @@ class _CustomTabState extends State<CustomTab> {
           Expanded(
             child: GestureDetector(
               onTap: () => _onItemTapped(0),
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
                 decoration: BoxDecoration(
                   color: _selectedIndex == 0
                       ? $styles.colors.button
@@ -54,15 +55,16 @@ class _CustomTabState extends State<CustomTab> {
           Expanded(
             child: GestureDetector(
               onTap: () => _onItemTapped(1),
-              child: Container(
-    decoration: BoxDecoration(
-    color: _selectedIndex == 1
-    ? $styles.colors.button
-        : $styles.colors.tabBackground,
-    borderRadius: const BorderRadius.horizontal(
-    right: Radius.circular(15),
-    ),
-    ),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                decoration: BoxDecoration(
+                  color: _selectedIndex == 1
+                      ? $styles.colors.button
+                      : $styles.colors.tabBackground,
+                  borderRadius: const BorderRadius.horizontal(
+                    right: Radius.circular(15),
+                  ),
+                ),
                 child: TabButton(
                   label: "Sign in",
                   textColor: _selectedIndex == 1
